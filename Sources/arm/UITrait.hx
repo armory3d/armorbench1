@@ -10,6 +10,12 @@ class UITrait extends armory.Trait {
     var gateObject:armory.object.Object;
     var openingGate = false;
 
+    var lastTime = 0.0;
+	var frameTime = 0.0;
+	var totalTime = 0.0;
+	var frames = 0;
+	var frameTimeAvg = 0.0;
+
     public function new() {
         super();
 
@@ -68,10 +74,23 @@ class UITrait extends armory.Trait {
                        pin = "DENIED";
                    }
                 }
+                var tt = Std.int(frameTimeAvg * 1000);
+                ui.text("fps: " + Std.int(1000 / tt) + " (" + tt + "ms)");
                 ui.unindent();
             }
         }
         ui.end();
+
+        totalTime += frameTime;
+		frames++;
+		if (totalTime > 1.0) {
+			var t = totalTime / frames;
+			frameTimeAvg = t;
+			totalTime = 0;
+			frames = 0;
+		}
+		frameTime = kha.Scheduler.realTime() - lastTime;
+		lastTime = kha.Scheduler.realTime();
     }
 
     function update() {
