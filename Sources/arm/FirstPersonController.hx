@@ -52,7 +52,7 @@ class FirstPersonController extends CameraController {
 		if (!body.ready) return;
 
 		// Move head
-		head.transform.loc.z = 0.1 + Math.sin(armory.system.Time.time()) / 50.0;
+		head.transform.loc.z = 0.1;// + Math.sin(armory.system.Time.time()) / 50.0;
 		head.transform.dirty = true;
 
 		// Move
