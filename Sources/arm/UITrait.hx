@@ -99,7 +99,7 @@ class UITrait extends armory.Trait {
             gateObject.transform.loc.x -= 0.03;
             gateObject.transform.dirty = true;
             gateObject.getTrait(armory.trait.internal.RigidBody).syncTransform();
-            if (gateObject.transform.loc.x < -2.3) openingGate = false;
+            if (gateObject.transform.loc.x < -2.8) openingGate = false;
         }
 
         var uv = iron.math.RayCaster.getPlaneUV(cast object, armory.system.Input.x, armory.system.Input.y, iron.Scene.active.camera);
