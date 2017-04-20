@@ -102,20 +102,21 @@ class UITrait extends armory.Trait {
             if (gateObject.transform.loc.x < -2.8) openingGate = false;
         }
 
-        var uv = iron.math.RayCaster.getPlaneUV(cast object, armory.system.Input.x, armory.system.Input.y, iron.Scene.active.camera);
+        var mouse = armory.system.Input.getMouse();
+        var uv = iron.math.RayCaster.getPlaneUV(cast object, mouse.x, mouse.y, iron.Scene.active.camera);
         if (uv == null) return;
 
         var px = Std.int(uv.x * 512);
         var py = Std.int(uv.y * 512);
 
-        if (armory.system.Input.started) {
+        if (mouse.started()) {
             ui.onMouseDown(0, px, py);
         }
-        else if (armory.system.Input.released) {
+        else if (mouse.released()) {
             ui.onMouseUp(0, px, py);
         }
         
-        if (armory.system.Input.movementX != 0 || armory.system.Input.movementY != 0) {
+        if (mouse.movementX != 0 || mouse.movementY != 0) {
             ui.onMouseMove(px, py, 0, 0);
         }
     }

@@ -5,7 +5,8 @@ class ToggleFlash extends armory.Trait {
         super();
         
         notifyOnUpdate(function() {
-            if (!armory.system.Input.down && armory.system.Input.started2) {
+        	var mouse = armory.system.Input.getMouse();
+            if (!mouse.down() && mouse.started("right")) {
                 object.visible = !object.visible;
             }
         });
