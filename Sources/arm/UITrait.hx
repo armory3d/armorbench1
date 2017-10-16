@@ -97,7 +97,7 @@ class UITrait extends armory.Trait {
 
         if (openingGate) {
             gateObject.transform.loc.x -= 0.03;
-            gateObject.transform.dirty = true;
+            gateObject.transform.buildMatrix();
             gateObject.getTrait(armory.trait.internal.RigidBody).syncTransform();
             if (gateObject.transform.loc.x < -2.8) openingGate = false;
         }
