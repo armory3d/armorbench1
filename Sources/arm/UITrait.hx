@@ -20,7 +20,7 @@ class UITrait extends armory.Trait {
         super();
 
         kha.Assets.loadFont("droid_sans", function(f:kha.Font) {
-            ui = new Zui({font: f, autoNotifyInput: false, scaleFactor: 2});
+            ui = new Zui({font: f, autoNotifyInput: false});
             armory.Scene.active.notifyOnInit(sceneInit);
         });
     }
