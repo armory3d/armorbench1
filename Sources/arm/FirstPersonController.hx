@@ -3,7 +3,7 @@ package arm;
 import iron.math.Vec4;
 import iron.system.Input;
 import iron.object.Object;
-import armory.trait.internal.PhysicsWorld;
+import armory.trait.physics.PhysicsWorld;
 import armory.trait.internal.CameraController;
 
 @:keep

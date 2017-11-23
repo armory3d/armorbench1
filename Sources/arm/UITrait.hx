@@ -2,12 +2,12 @@ package arm;
 
 import zui.*;
 
-class UITrait extends armory.Trait {
+class UITrait extends iron.Trait {
     
     var ui:Zui;
     var rt:kha.Image;
     var pin = "";
-    var gateObject:armory.object.Object;
+    var gateObject:iron.object.Object;
     var openingGate = false;
 
     var lastTime = 0.0;
@@ -21,13 +21,13 @@ class UITrait extends armory.Trait {
 
         kha.Assets.loadFont("droid_sans", function(f:kha.Font) {
             ui = new Zui({font: f, autoNotifyInput: false});
-            armory.Scene.active.notifyOnInit(sceneInit);
+            iron.Scene.active.notifyOnInit(sceneInit);
         });
     }
 
     function sceneInit() {
         rt = kha.Image.createRenderTarget(512, 512);
-        var mat:armory.data.MaterialData = cast(object, armory.object.MeshObject).materials[0];
+        var mat:iron.data.MaterialData = cast(object, iron.object.MeshObject).materials[0];
         mat.contexts[0].textures[0] = rt; // Override diffuse texture
 
         notifyOnRender(render);
@@ -67,7 +67,7 @@ class UITrait extends armory.Trait {
                     else if (pin == "340") {
                        pin = "VERIFIED";
 
-                       gateObject = armory.Scene.active.getChild('GateLeft');
+                       gateObject = iron.Scene.active.getChild('GateLeft');
                        openingGate = true;  
                    }
                    else {
@@ -98,11 +98,11 @@ class UITrait extends armory.Trait {
         if (openingGate) {
             gateObject.transform.loc.x -= 0.03;
             gateObject.transform.buildMatrix();
-            gateObject.getTrait(armory.trait.internal.RigidBody).syncTransform();
+            gateObject.getTrait(armory.trait.physics.RigidBody).syncTransform();
             if (gateObject.transform.loc.x < -2.8) openingGate = false;
         }
 
-        var mouse = armory.system.Input.getMouse();
+        var mouse = iron.system.Input.getMouse();
         var uv = iron.math.RayCaster.getPlaneUV(cast object, mouse.x, mouse.y, iron.Scene.active.camera);
         if (uv == null) return;
 
