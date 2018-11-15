@@ -19,7 +19,7 @@ class UITrait extends iron.Trait {
     public function new() {
         super();
 
-        kha.Assets.loadFont("droid_sans", function(f:kha.Font) {
+        kha.Assets.loadFont("font_default", function(f:kha.Font) {
             ui = new Zui({font: f, autoNotifyInput: false});
             iron.Scene.active.notifyOnInit(sceneInit);
         });

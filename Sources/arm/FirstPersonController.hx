@@ -20,7 +20,7 @@ class FirstPersonController extends CameraController {
 	public function new() {
 		super();
 
-		armory.Scene.active.notifyOnInit(init);
+		iron.Scene.active.notifyOnInit(init);
 	}
 	
 	function init() {
@@ -64,13 +64,13 @@ class FirstPersonController extends CameraController {
 		if (moveRight) dir.add(transform.right());
 
 		// Push down
-		var btvec = body.getLinearVelocity();
-		body.setLinearVelocity(0.0, 0.0, btvec.z() - 1.0);
+		var v = body.getLinearVelocity();
+		body.setLinearVelocity(0.0, 0.0, v.z - 1.0);
 
 		if (moveForward || moveBackward || moveLeft || moveRight) {			
 			dir.mult(3);
 			body.activate();
-			body.setLinearVelocity(dir.x, dir.y, btvec.z() - 1.0);
+			body.setLinearVelocity(dir.x, dir.y, v.z - 1.0);
 		}
 
 		// Keep vertical
